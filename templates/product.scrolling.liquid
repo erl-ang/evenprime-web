@@ -1,0 +1,49 @@
+{% comment %}
+  Scrolling images product template
+{% endcomment %}
+
+<div id="template-{{ template | replace: '.', '-' | handle }}" class="shopify-section product-page">
+    <section class="section
+                    is-width-wide
+                    has-padding-top
+                    ">
+      <div class="container has-padding-left has-padding-right">
+        <div class="one-whole column breadcrumb__container is-flex is-justify-space-between is-flex-column-reverse-mobile is-align-center">
+
+          <div class="breadcrumb__wrapper">
+            {% render 'breadcrumb', context: 'product' %}
+          </div>
+
+          {% if collection.previous_product or collection.next_product %}
+            <div class="page-navigation-arrows has-padding-top has-padding-bottom is-{{ settings.breadcrumb_capitalization }}">
+              {% if collection.previous_product %}
+                <a href="{{ collection.previous_product }}" title="{{ 'products.general.previous_product_html' | t }}" class="page-navigation__next">
+                  {{ 'products.general.previous_product_html' | t }}
+                </a>
+              {% endif %}
+              {% if collection.previous_product and collection.next_product %}
+                <span class="page-navigation__divider"> | </span>
+              {% endif %}
+              {% if collection.next_product %}
+                <a href="{{collection.next_product}}" title="{{ 'products.general.next_product_html' | t }}" class="page-navigation__next">
+                  {{ 'products.general.next_product_html' | t }}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+      <div class="container">
+        {% section 'product-image-scroll__main' %}
+        
+        {% section 'product__recommendations' %}
+      </div>
+      <div class = "container">
+        <!--Start Stamped.io Auto Installation-->
+  		  <div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}">{{ product.metafields.stamped.reviews }}</div>
+  		  <!--End Stamped.io Auto Installation-->
+      </div>
+      
+    </section>
+  </div>

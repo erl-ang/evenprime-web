@@ -1,0 +1,73 @@
+{% assign selected = section.settings.ingredients %}
+{% assign ingredients = blogs[selected].articles | sort: 'title' %}
+
+<div class="ingr" data-section-id="{{ section.id }}" data-section-type="page" data-enable-history-state="true">
+  <div class="flex mb-4 justify-between -mx-6">
+    <div class="px-6 w-1/2 lg:w-1/6 ">
+      <ul class="list-reset font-medium uppercase leading-loose">
+        <li>INGREDIENTS</li>
+      </ul>
+    </div>
+    <div class="px-6 w-1/2 lg:w-1/5 text-right">
+      {% for tag in blogs[selected].all_tags %}
+        <button class="transition transition-color focus:text-blue font-medium focus:outline-none hover:text-blue px-1 js-scroll-into-view" data-target="{{ tag }}">{{ tag }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <ul class="list-reset border-t border-grey-light">
+    {% for tag in blogs[selected].all_tags %}
+    <ul class="list-reset flex border-b pt-10 border-grey-light js-scroll" id="{{ tag }}">
+        <li class="text-3xl font-bold w-1/6 lg:w-1/3">{{ tag }}</li>
+        <ul class="list-reset w-5/6 lg:w-2/3">
+          <ul class="list-reset lg:flex lg:-mx-10 flex-wrap">
+            {% for article in ingredients %}
+                {% for post in article.tags %}
+                  {% if tag == post %}
+                  <li class="lg:w-1/2 lg:px-5 mb-10 relative">
+                    <span class="absolute pin-l anchor focus:outline-none" id="{{ article.title | handleize }}">&nbsp;</span>
+                    <div class="max-w-sm">
+                      <h3 class="text-sm font-medium">
+                        {{ article.title }}
+                      </h3>
+                      <div class="relative overflow-hidden transition ingredients">
+                        {%- assign content = article.content | strip_html -%}
+                        <div class="mb-4">
+                          {{- content -}}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  {% endif %}
+                {% endfor %}
+            {% endfor %}
+          </ul>
+        </ul>
+    </ul>
+    {% endfor %}
+  </ul>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Ingredients",
+    "settings": [
+      {
+        "type":      "link_list",
+        "id":        "ingredients",
+        "label":     "ingredients",
+        "info":      "ingredients"
+      }
+    ]
+  }
+{% endschema %}
+
+
+<style>
+  .pt-24 {
+    padding-top: 2rem;
+}
+  .ingr .font-medium li {
+    font-weight: bold;
+}
+</style>

@@ -1,0 +1,10 @@
+<li class="border-b border-grey-light" id="{{ heading | handleize }}">
+  <button class="text-xs tracking-wide w-full py-3 pr-6 focus:outline-none transition transition-opacity hover:opacity-50 text-left uppercase terms js-terms">
+    {{- heading -}}
+  </button>
+  <div class="max-h-0 overflow-hidden transition transition-height">
+    <p class="pt-3 pb-6 max-w-md">
+      {{- paragraph | newline_to_br -}}
+    </p>
+  </div>
+</li>

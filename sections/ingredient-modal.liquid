@@ -1,0 +1,19 @@
+{% assign ingredients = product.metafields.sf_ingredient.ingredient_modal %}
+
+<div id="ex1" class="modal">
+ 
+  <div class="">
+    <heading class="block mb-4 font-bold text-base">
+      Ingredients
+    </heading>
+    {% if ingredients %}
+      {{ ingredients }}
+    {%endif%}
+  </div>
+</div>
+
+<style>
+  .blocker{
+  z-index:333;
+  }
+</style>

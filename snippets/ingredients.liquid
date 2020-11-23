@@ -1,0 +1,79 @@
+{% assign ingredient_1 = articles[product.metafields.prod.ing1] %}
+{% assign ingredient_2 = articles[product.metafields.prod.ing2] %}
+{% assign ingredient_3 = articles[product.metafields.prod.ing3] %}
+{% assign ingredient_4 = articles[product.metafields.prod.ing4] %}
+{% assign ingredient_5 = articles[product.metafields.prod.ing5] %}
+
+
+<div class="mb-12 md:pt-16 lg:pt-0 lg:mb-32">
+    <h3 class="font-medium text-sm uppercase mb-8" style="font-size:18px;">KEY INGREDIENTS </h3>
+    <ul class="list-reset font-bold leading-tight text-4xl lg:text-6xl mb-8">
+      {% unless ingredient_1.empty? %}
+        <li class="custom-outline">
+          <button class="w-full md:w-auto text-black no-underline js-scroll  focus:outline-none js-ingred" data-index="0">{{ ingredient_1.title }}</button>
+        </li>
+      {% endunless %}
+      {% unless ingredient_2.empty? %}
+        <li class="custom-outline">
+          <button class="w-full md:w-auto text-black no-underline js-scroll  focus:outline-none js-ingred" data-index="1">{{ ingredient_2.title }}</button>
+        </li>
+      {% endunless %}
+      {% unless ingredient_3.empty? %}
+        <li class="custom-outline">
+          <button class="w-full md:w-auto text-black no-underline js-scroll  focus:outline-none js-ingred" data-index="2">{{ ingredient_3.title }}</a>
+        </li>
+      {% endunless %}
+      {% unless ingredient_4.empty? %}
+        <li class="custom-outline">
+          <button class="w-full md:w-auto text-black no-underline js-scroll  focus:outline-none js-ingred" data-index="3">{{ ingredient_4.title }}</button>
+        </li>
+      {% endunless %}
+      {% unless ingredient_5.empty? %}
+        <li class="custom-outline">
+          <button class="w-full md:w-auto text-black no-underline js-scroll  focus:outline-none js-ingred" data-index="4">{{ ingredient_5.title }}</button>
+        </li>
+      {% endunless %}
+    </ul>
+    <div class="lg:flex justify-between items-end">
+      <ul class="list-reset js-scroll " id="ingredients">
+        {% unless ingredient_1.empty? %}
+          <li class="mb-4 lg:mb-0 max-w-xs">
+            <p class="mb-4">
+              {{ ingredient_1.content | strip_html }}
+            </p>
+          </li>
+        {% endunless %}
+        {% unless ingredient_2.empty? %}
+          <li class="mb-4 lg:mb-0 max-w-xs hidden">
+            <p class="mb-4">
+              {{ ingredient_2.content | strip_html }}
+            </p>
+          </li>
+        {% endunless %}
+        {% unless ingredient_3.empty? %}
+          <li class="mb-4 lg:mb-0 max-w-xs hidden">
+            <p class="mb-4">
+              {{ ingredient_3.content | strip_html }}
+            </p>
+          </li>
+        {% endunless %}
+        {% unless ingredient_4.empty? %}
+          <li class="mb-4 lg:mb-0 max-w-xs hidden">
+            <p class="mb-4">
+              {{ ingredient_4.content | strip_html }}
+            </p>
+          </li>
+        {% endunless %}
+        {% unless ingredient_5.empty? %}
+          <li class="mb-4 lg:mb-0 max-w-xs hidden">
+            <p class="mb-4">
+              {{ ingredient_5.content | strip_html }}
+            </p>
+          </li>
+        {% endunless %}
+      </ul>
+      <div class="md:text-right inbtn">
+        <button class="static-under js-modal-open" href="#ex1" rel="modal:open">VIEW ALL INGREDIENTS</button>
+      </div>
+    </div>
+  </div>
